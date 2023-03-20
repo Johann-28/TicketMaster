@@ -1,5 +1,7 @@
 # TicketMaster
 
+Este repositorio será una bitácora de un sistema administrador de eventos al estilo de TicketMaster, un sistema que promete llevar la administracion de eventos proximos y su gestión de base de datos utilizando mySQL
+
 ## Diagrama entidad relacion
 
 > ![Diagrama Entidad-Relacion](/TicketMaster/img/Diagrama%20ER.png)
