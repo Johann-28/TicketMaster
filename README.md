@@ -7,3 +7,8 @@
 ## Diagrama de clases
 
 ![Diagrama de clases](https://github.com/Johann-28/TicketMaster/blob/main/TicketMaster/img/Diagrama.png)
+
+## Diagrama con tipos de datos
+
+> ![Diagrama de clases](https://github.com/Johann-28/TicketMaster/blob/main/TicketMaster/img/Diagrama-TiposdeDatos.png)
+
