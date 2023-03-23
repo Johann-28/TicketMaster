@@ -1,5 +1,9 @@
 SELECT 'HOLA MUNDO';
 SELECT 'PRUEBA DE ACTUALIZACION';
+
+# --------------------- CREACION DE SCHEMA ----------------------- #
+CREATE SCHEMA ticket_master;
+USE ticket_master;
 # ---------------------------- TABLAS ---------------------------- #
 CREATE TABLE Artistas(
 		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
