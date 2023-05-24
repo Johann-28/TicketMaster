@@ -60,7 +60,7 @@ Este modelo es aterrizar a una idea más aplicable el modelo entidad relación q
 
 ## Diagrama tabular
 
-> ![Diagrama de clases](/TicketMaster/img/Diagrama.png)
+> ![Diagrama de clases](/TicketMaster/img/Diagrama.jpg)
 
 
 
@@ -93,7 +93,7 @@ Este modelo es aterrizar a una idea más aplicable el modelo entidad relación q
  ![Tabla de zonas](/TicketMaster/img/EjemploZonas.png) 
 
 > ### Boletos
-  > ![Tabla de boletos](/TicketMaster/img/Boletos.png)
+  > ![Tabla de boletos](/TicketMaster/img/Boletos.jpg)
     > <p align="justify">Esta tabla guardara los registros de los boletos que existen en un evento, el idEvento nos determina indirectamente en que lugar se hará lo que nos podría ayudar a llevar un control realista de al cantidad de boletos disponibles en caso de ser necesario, el idZona nos ayuda a determinar el precio del boleto
 
 > ### Asientos
@@ -106,7 +106,7 @@ Este modelo es aterrizar a una idea más aplicable el modelo entidad relación q
     > <p align="justify">Esta tabla guardara los registros de los clientes registrados.
 
 > ### Tickets
-  > ![Tabla de tickets](/TicketMaster/img/Ticket.png)
+  > ![Tabla de tickets](/TicketMaster/img/Ticket.jpg)
     > <p align="justify">Esta tabla será el resultado de todo el proceso de compra, como podemos ver en su mayoría se conforma por FK, el que un boleto tenga un ticket significa que ya ha sido vendido al igual que si un asiento tiene relacionado un ticket, el idCliente será para generar un buen formato
 
   
