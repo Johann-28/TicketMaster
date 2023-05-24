@@ -90,70 +90,69 @@ insert into Artistas (nombre, genero) values ('Javier Santaolalla', 'Conferencia
 insert into Artistas (nombre, genero) values ('Ha Ash', 'Musica');
 insert into Artistas (nombre, genero) values ('Vaselina', 'Teatro');
 insert into Artistas (nombre, genero) values ('Canelo', 'Box');
-SELECT * FROM Artistas
+
 
 # ---------------------------- LUGARES ---------------------------- #
 
 insert into Lugares (nombre, direccion) values ('Auditorio Monterrey', '927 Carpenter Parkway');
-insert into Lugares (nombre, direccion) values ('Auditorio Luis Elizondo', '42022 Hoepker Point');
-insert into Lugares (nombre, direccion) values ('Auditorio Eladio Saenz Quiroga ', '08007 Cordelia Place');
-insert into Lugares (nombre, direccion) values ('Auditorio CitiBanamex ', '20 Lakeland Pass');
+insert into Lugares (nombre, direccion) values ('Auditorio Luis Elizondo', '42022 Hoepker Point'); 
+insert into Lugares (nombre, direccion) values ('Auditorio Eladio Saenz Quiroga ', '08007 Cordelia Place'); 
+insert into Lugares (nombre, direccion) values ('Auditorio CitiBanamex ', '20 Lakeland Pass'); 
 insert into Lugares (nombre, direccion) values ('Auditorio Guemercindo Cantu ', '47145 Lawn Way');
-SELECT * FROM Lugares;
+
 
 # ---------------------------- Eventos ---------------------------- #
-insert into Eventos (idArtista, idLugar, fechaHora, descripcion, nombre) values (1,6, NOW() ,'El sol de mexico en su gira nacional', 'Gira Luis Miguel');
-insert into Eventos (idArtista, idLugar, fechaHora, descripcion, nombre) values (2,9, '2023-12-28 13:00:00' ,'Daniella Spalla viene a mexico! ', 'Concierto Daniella Spalla');
-insert into Eventos (idArtista, idLugar, fechaHora, descripcion, nombre) values (3,10, '2023-12-28 13:00:00' ,'Conferencia impartida por Javier Santaolalla ', 'Date un Voltio');
-insert into Eventos (idArtista, idLugar, fechaHora, descripcion, nombre) values (4,8, '2023-06-28 13:00:00' ,'Gira 23-24 Ha Ash', 'Concierto Ha Ash');
-insert into Eventos (idArtista, idLugar, fechaHora, descripcion, nombre) values (5,7, '2023-06-28 13:00:00' ,'Obra de Teatro', 'Vaselina');
-insert into Eventos (idArtista, idLugar, fechaHora, descripcion, nombre) values (6,6, '2023-12-28 13:00:00' ,'Canelo vs Jhon Ryder', 'Final de box');
-SELECT * FROM Eventos;
+insert into Eventos (idArtista, idLugar, fechaHora, descripcion, nombre) values (1,1, '2023-12-28 13:00:00' ,'El sol de mexico en su gira nacional', 'Gira Luis Miguel');
+insert into Eventos (idArtista, idLugar, fechaHora, descripcion, nombre) values (2,4, '2023-12-28 13:00:00' ,'Daniella Spalla viene a mexico! ', 'Concierto Daniella Spalla');
+insert into Eventos (idArtista, idLugar, fechaHora, descripcion, nombre) values (3,5, '2023-12-28 13:00:00' ,'Conferencia impartida por Javier Santaolalla ', 'Date un Voltio');
+insert into Eventos (idArtista, idLugar, fechaHora, descripcion, nombre) values (4,3, '2023-06-28 13:00:00' ,'Gira 23-24 Ha Ash', 'Concierto Ha Ash');
+insert into Eventos (idArtista, idLugar, fechaHora, descripcion, nombre) values (5,2, '2023-06-28 13:00:00' ,'Obra de Teatro', 'Vaselina');
+insert into Eventos (idArtista, idLugar, fechaHora, descripcion, nombre) values (6,1, '2023-12-28 13:00:00' ,'Canelo vs Jhon Ryder', 'Final de box');
+
 
 # ---------------------------- Zonas ---------------------------- #
-SELECT * FROM Zonas;
+
                         #Auditorio Monterrey
-insert into Zonas (idLugar , descripcion, Capacidad) values (6 , 'Platino', 10);
-insert into Zonas (idLugar , descripcion, Capacidad) values (6 , 'Oro', 10);
-insert into Zonas (idLugar , descripcion, Capacidad) values (6 , 'Plata', 10);
-insert into Zonas (idLugar , descripcion, Capacidad) values (6 , 'Butaca', 10);
-insert into Zonas (idLugar , descripcion, Capacidad) values (6 , 'Cancha General', 10);
-insert into Zonas (idLugar , descripcion, Capacidad) values (6 , 'Luneta', 10);
-insert into Zonas (idLugar , descripcion, Capacidad) values (6 , 'Luenta especial', 10);
-insert into Zonas (idLugar , descripcion, Capacidad) values (6 , 'Balcon', 10);
-insert into Zonas (idLugar , descripcion ,Capacidad) values (6 , 'Preferente', 10);
+insert into Zonas (idLugar , descripcion, Capacidad) values (1, 'Platino', 10);
+insert into Zonas (idLugar , descripcion, Capacidad) values (1, 'Oro', 10);
+insert into Zonas (idLugar , descripcion, Capacidad) values (1, 'Plata', 10);
+insert into Zonas (idLugar , descripcion, Capacidad) values (1, 'Butaca', 10);
+insert into Zonas (idLugar , descripcion, Capacidad) values (1, 'Cancha General', 10);
+insert into Zonas (idLugar , descripcion, Capacidad) values (1, 'Luneta', 10);
+insert into Zonas (idLugar , descripcion, Capacidad) values (1, 'Luenta especial', 10);
+insert into Zonas (idLugar , descripcion, Capacidad) values (1, 'Balcon', 10);
+insert into Zonas (idLugar , descripcion ,Capacidad) values (1, 'Preferente', 10);
 
 						#Auditorio Luiz Elizondo
-insert into Zonas (idLugar , descripcion ,Capacidad) values (7 , 'Orquesta Izquierda', 10);
-insert into Zonas (idLugar , descripcion ,Capacidad) values (7 , 'Luneta A', 10);
-insert into Zonas (idLugar , descripcion ,Capacidad) values (7 , 'Luneta B', 10);
+insert into Zonas (idLugar , descripcion ,Capacidad) values (2 , 'Orquesta Izquierda', 10);
+insert into Zonas (idLugar , descripcion ,Capacidad) values (2, 'Luneta A', 10);
+insert into Zonas (idLugar , descripcion ,Capacidad) values (2, 'Luneta B', 10);
 
 						#Auditorio Eladio Saenz Quiroga
-insert into Zonas (idLugar , descripcion ,Capacidad) values (8 , 'General', 10);
+insert into Zonas (idLugar , descripcion ,Capacidad) values (3 , 'General', 10);
 
 						#Auditorio Citibanamex
-insert into Zonas (idLugar , descripcion ,Capacidad) values (9 , 'Beyond VIP', 10);         
-insert into Zonas (idLugar , descripcion ,Capacidad) values (9 , 'Beyond Oro', 10); 
-insert into Zonas (idLugar , descripcion ,Capacidad) values (9 , 'Beyond Plata', 10); 
-insert into Zonas (idLugar , descripcion ,Capacidad) values (9 , 'Beyond', 10); 
-insert into Zonas (idLugar , descripcion ,Capacidad) values (9 , 'Platinum', 10); 
-insert into Zonas (idLugar , descripcion ,Capacidad) values (9 , 'Platinum B', 10);         
-insert into Zonas (idLugar , descripcion ,Capacidad) values (9 , 'Platinum C', 10); 
-insert into Zonas (idLugar , descripcion ,Capacidad) values (9 , 'Perfiles A', 10); 
-insert into Zonas (idLugar , descripcion ,Capacidad) values (9 , 'Perfiles B', 10); 
-insert into Zonas (idLugar , descripcion ,Capacidad) values (9 , 'Perfiles C', 10); 
-insert into Zonas (idLugar , descripcion ,Capacidad) values (9 , 'Perfiles D', 10); 
-insert into Zonas (idLugar , descripcion ,Capacidad) values (9 , 'Perfiles E', 10); 
-insert into Zonas (idLugar , descripcion ,Capacidad) values (9 , 'Perfiles F', 10); 
-insert into Zonas (idLugar , descripcion ,Capacidad) values (9 , 'Perfiles G', 10); 
+insert into Zonas (idLugar , descripcion ,Capacidad) values (4 , 'Beyond VIP', 10);         
+insert into Zonas (idLugar , descripcion ,Capacidad) values (4 , 'Beyond Oro', 10); 
+insert into Zonas (idLugar , descripcion ,Capacidad) values (4 , 'Beyond Plata', 10); 
+insert into Zonas (idLugar , descripcion ,Capacidad) values (4 , 'Beyond', 10); 
+insert into Zonas (idLugar , descripcion ,Capacidad) values (4 , 'Platinum', 10); 
+insert into Zonas (idLugar , descripcion ,Capacidad) values (4 , 'Platinum B', 10);         
+insert into Zonas (idLugar , descripcion ,Capacidad) values (4 , 'Platinum C', 10); 
+insert into Zonas (idLugar , descripcion ,Capacidad) values (4 , 'Perfiles A', 10); 
+insert into Zonas (idLugar , descripcion ,Capacidad) values (4 , 'Perfiles B', 10); 
+insert into Zonas (idLugar , descripcion ,Capacidad) values (4 , 'Perfiles C', 10); 
+insert into Zonas (idLugar , descripcion ,Capacidad) values (4 , 'Perfiles D', 10); 
+insert into Zonas (idLugar , descripcion ,Capacidad) values (4 , 'Perfiles E', 10); 
+insert into Zonas (idLugar , descripcion ,Capacidad) values (4 , 'Perfiles F', 10); 
+insert into Zonas (idLugar , descripcion ,Capacidad) values (4 , 'Perfiles G', 10); 
 
 						#Auditorio Guemercindo Cantu
-insert into Zonas (idLugar , descripcion ,Capacidad) values (10 , 'General', 10);
+insert into Zonas (idLugar , descripcion ,Capacidad) values (5 , 'General', 10);
 
 
 # ---------------------------- Asientos ---------------------------- #
-select  * from Asientos;
-select * from Zonas;
+
 
 -- idZona = 1
 insert into Asientos(idZona, fila, numero, disponible) values(1, 1, 1 , TRUE);
@@ -494,12 +493,25 @@ insert into Asientos(idZona, fila, numero, disponible) values(28, 1, 10 , TRUE);
 
 # ---------------------------- Clientes ---------------------------- #
 
-Select * from Clientes;
+
 
 INSERT INTO Clientes(nombre, email, pwd) VALUES('Johann', 'johann@email.com', '123456');
 INSERT INTO Clientes(nombre, email, pwd) VALUES('Felix', 'felix@email.com', '12345678');
 INSERT INTO Clientes(nombre, email, pwd) VALUES('Juan', 'juan@email.com', '1234567891');
 
-select * from artistas, boletos
+# ---------------------------- Formas de Pago ---------------------------- #
+
+INSERT INTO Formasdepago(tipo) VALUES ('Efectivo');
+INSERT INTO Formasdepago(tipo) 	VALUES ('Tarjeta');
+
+select * from artistas;
+select * from asientos;
+select * from boletos;
+select * from clientes;
+select * from eventos;
+select * from formasdepago;
+select * from lugares;
+select * from tickets;
+select * from  zonas;
 
 
