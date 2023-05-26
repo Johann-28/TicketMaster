@@ -912,3 +912,31 @@ VALUES
   (6, 88, 400, 1),
   (6, 89, 400, 1),
   (6, 90, 400, 1);
+# -------------------------------------------------------------------------------------- VISTAS ---------------------------------------------------------------------------------------- #
+CREATE VIEW BoletosVista
+AS
+SELECT bol.id as IdBoleto , lug.nombre as NombreLugar , eve.nombre as EventoNombre , zone.descripcion Zona , asi.fila Fila , asi.numero Numero, bol.precio Precio, bol.disponible
+FROM Boletos bol
+INNER JOIN Asientos asi ON asi.id = bol.idAsiento
+INNER JOIN Eventos eve ON eve.id = bol.idEvento
+INNER JOIN Lugares lug ON eve.idLugar = lug.id
+INNER JOIN Zonas zone ON zone.id = asi.idZona;
+
+# ----------------------------------------------------------- #
+CREATE VIEW AsientosVista
+AS
+SELECT asi.id as IdAsiento, lug.id as IdLugar, lug.nombre as Lugar, zona.id as IdZona, zona.descripcion as 'Zona de Asiento' , asi.fila as Fila , asi.numero as Numero
+FROM Asientos asi
+INNER JOIN Zonas zona ON zona.id = asi.idZona
+INNER JOIN Lugares lug ON lug.id = zona.idLugar;
+# ----------------------------------------------------------- #
+CREATE VIEW TicketsVista 
+AS
+SELECT tic.id AS TicketID, ev.nombre AS Evento, lug.nombre AS Lugar, ev.fechaHora AS Fecha, ev.descripcion AS Descripcion, lug.direccion AS Direccion, cli.nombre AS Cliente, fdp.tipo AS 'Forma de Pago' , concat(asi.fila, '-' , asi.numero) AS Asiento FROM tickets tic
+INNER JOIN Boletos bol ON bol.id = tic.idBoleto
+INNER JOIN Eventos ev ON ev.id = bol.idEvento
+INNER JOIN Lugares lug ON lug.id = ev.idLugar
+INNER JOIN Clientes cli ON cli.id = tic.idCliente
+INNER JOIN Formasdepago fdp ON fdp.id = tic.idFormaDePago
+INNER JOIN Asientos asi ON asi.id = bol.idAsiento;
+
