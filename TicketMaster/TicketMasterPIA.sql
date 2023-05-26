@@ -1064,4 +1064,139 @@ BEGIN
 END //
 
 DELIMITER ;
+# -------------------------------------------------------------------------------------- PROCEDIMIENTOS ---------------------------------------------------------------------------------------- #
+DELIMITER //
 
+CREATE PROCEDURE InsertarEvento(idartista INT, idLugar INT, fechaHora DATETIME, descripcionn VARCHAR(50), nombree VARCHAR(50))
+BEGIN	
+
+		DECLARE i INT;
+        DECLARE offset_value INT;
+		INSERT INTO Eventos(idArtista, idLugar, fechaHora, descripcion, nombre)
+		VALUES(idartista, idlugar, fechahora, descripcionn, nombree);
+     
+		SET @numAsientos = (SELECT count(asi.id)
+								FROM Asientos asi
+								INNER JOIN Zonas zona ON zona.id = asi.idZona
+								INNER JOIN Lugares lug ON lug.id = zona.idLugar
+                                WHERE zona.idLugar = idlugar);
+		SELECT @numAsientos;
+		SET @idEvento = LAST_INSERT_ID();
+        
+  
+        SET i  = 1;
+        SET offset_value = i -1;
+        
+        SET @lugarEvento = (SELECT idLugar FROM Eventos WHERE id = @idEvento);
+        
+
+      
+        
+    WHILE i <= @numAsientos DO
+	
+		SET @idAsiento = (SELECT asi.id FROM Asientos asi INNER JOIN Zonas zona ON zona.id = asi.idZona INNER JOIN Lugares lug ON lug.id  = zona.idLugar WHERE lug.id = @lugarEvento LIMIT 1 OFFSET offset_value);
+        INSERT INTO Boletos (idEvento, idAsiento, precio , disponible)
+        VALUES (@idEvento, @idAsiento, 500, 1);
+        SET i = i + 1;
+    END WHILE;
+	
+
+END //
+
+DELIMITER ;
+-- ---------------------------------------------------------------------------
+DELIMITER //
+
+CREATE PROCEDURE CrearTicket(idboleto INT, idcliente INT, idformadepago INT)
+BEGIN
+
+	IF EXISTS (SELECT * FROM formasdepago WHERE id = idformadepago) THEN
+		
+        IF EXISTS (SELECT * FROM clientes Where id = idcliente) THEN
+        
+			IF EXISTS (SELECT * FROM Boletos WHERE (id = idboleto AND disponible = 1)) THEN
+            
+				INSERT INTO Tickets(idBoleto, idCliente, idFormaDePAgo, fechaCompra)
+                VALUES(idboleto, idcliente, idformadepago, now());
+                
+                UPDATE boletos SET disponible = 0 WHERE id = idboleto;
+                
+                SELECT 'Registro creado con exito' AS Mensaje;
+            ELSE
+				SELECT 'Boleto no disponible' AS Mensaje;
+            END IF;
+			
+		ELSE
+			SELECT 'Cliente no existe' AS Mensaje;
+		END IF;
+        
+    ELSE
+		SELECT 'Metodo de pago no existe' AS Mensaje;
+    END IF;
+
+END
+
+DELIMITER ;
+-- ---------------------------------------------------------------------------
+DELIMITER //
+
+CREATE PROCEDURE EliminarTicket(idTicket INT)
+BEGIN
+
+	IF EXISTS (SELECT * FROM Tickets WHERE id = idTicket) THEN
+			DELETE FROM Tickets WHERE ID = IdTicket;
+            
+            SET @idBoleto = (SELECT idBoleto FROM Tickets );
+            
+            UPDATE Boletos SET disponible = 1 WHERE id = @idBoleto;
+            SELECT 'Operación realizada correctamente';
+           
+        ELSE
+			SELECT 'Ticket no existe';
+	END IF;
+
+END
+
+DELIMITER ;
+# ----------------------------------------------------- #
+DELIMITER //
+
+CREATE PROCEDURE Eliminar_Evento(idevento INT)
+BEGIN
+
+	SET @existeEvento = (SELECT ExisteEvento(idEvento));
+    
+    IF @existeEvento = 1 THEN
+		DELETE FROM Boletos WHERE idEvento = idevento;
+		DELETE FROM Eventos WHERE id = idevento;
+       
+        
+        SELECT 'Evento eliminado correctamente';
+	
+    ELSE
+		SELECT 'Evento no existe';
+        
+	END IF;
+
+END //
+
+DELIMITER ;
+# ----------------------------------------------------- #
+
+DELIMITER //
+
+CREATE PROCEDURE ActualizarLugar(idLugar INT, Nombre VARCHAR(50), Direccion VARCHAR(50))
+BEGIN
+
+	IF EXISTS (SELECT * FROM Lugares WHERE id = idLugar) THEN
+		
+		UPDATE Lugares SET nombre = Nombre , direccion = Direccion WHERE id = idLugar;
+        SELECT 'Evento actualizado con exito';
+	ELSE
+		SELECT 'Evento no existe' AS Mensaje;
+    END IF;
+ 
+
+END //
+
+DELIMITER ;
