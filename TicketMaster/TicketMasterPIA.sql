@@ -1200,3 +1200,123 @@ BEGIN
 END //
 
 DELIMITER ;
+# -------------------------------------------------------------------------------------- TRIGGERS ---------------------------------------------------------------------------------------- #
+DELIMITER //
+
+CREATE TRIGGER after_insert_evento
+AFTER INSERT ON Eventos
+FOR EACH ROW
+BEGIN
+    
+    INSERT INTO new_eventos(idEvento, nombre, fechaDeInsercion, usuario, accion)
+    VALUES (NEW.id, NEW.nombre, NOW(), USER(), 'Añadio');
+    
+END //
+
+DELIMITER ;
+
+CREATE TABLE new_eventos(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    idEvento INT,
+    nombre VARCHAR(50),
+    fechaDeInsercion DATETIME,
+    usuario VARCHAR(50), -- usuario que añadio el evento,
+    accion VARCHAR(50)
+ 
+);
+# ----------------------------------------------------------- #
+DELIMITER //
+
+CREATE TRIGGER after_delete_evento
+AFTER DELETE ON Eventos
+FOR EACH ROW
+BEGIN
+    
+    INSERT INTO new_eventos(idEvento, nombre, fechaDeInsercion, usuario, accion)
+    VALUES (OLD.id, OLD.nombre, NOW(), USER(), 'Borró');
+    
+END //
+
+DELIMITER ;
+
+# ----------------------------------------------------------- #
+CREATE TABLE new_ticket(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    idTicket INT,
+    idBoleto INT,
+    idCliente INT, 
+    idFormaDePago INT,
+    fechaCompra DATETIME,
+    usuario VARCHAR(50),
+    accion VARCHAR(50)
+    );
+
+DELIMITER //
+
+CREATE TRIGGER after_insert_ticket
+AFTER INSERT ON Tickets
+FOR EACH ROW
+BEGIN
+    
+    INSERT INTO new_ticket(idTicket ,idBoleto ,idCliente , idFormaDePago ,fechaCompra, usuario, accion)
+    VALUES (NEW.id, NEW.idBoleto, NEW.idCliente, NEW.idFormaDePago, NOW(), USER(), 'Agregó');
+    
+END //
+
+DELIMITER ;
+# ------------------------------------------------------------------------------------------------ #
+DELIMITER //
+
+CREATE TRIGGER after_delete_ticket
+AFTER DELETE ON Tickets
+FOR EACH ROW
+BEGIN
+    
+    INSERT INTO new_ticket(idTicket ,idBoleto ,idCliente , idFormaDePago ,fechaCompra, usuario, accion)
+    VALUES (OLD.id, OLD.idBoleto, OLD.idCliente, OLD.idFormaDePago, NOW(), USER(), 'Eliminó');
+    
+END //
+
+DELIMITER ;
+# ------------------------------------------------------------------------------------------------ #
+
+CREATE TABLE new_lugares(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    idLugar INT,
+    nombre VARCHAR(50),
+    direccion VARCHAR (50),
+    fechaModificacion DATETIME,
+    usuario VARCHAR(50),
+    accion VARCHAR(50)
+    
+    );
+    
+DELIMITER //
+
+CREATE TRIGGER after_update_lugar
+AFTER UPDATE ON Lugares
+FOR EACH ROW
+BEGIN
+    
+    INSERT INTO new_lugares(idLugar , nombre , direccion ,fechaModificacion, usuario, accion)
+    VALUES (OLD.id, OLD.nombre, OLD.direccion,  NOW(), USER(), 'Actualizó');
+    
+END //
+
+DELIMITER ;
+# -------------------------------------------------------------------------------------------------- TABLAS ------------------------------------------------------ #
+select * from artistas;
+select * from asientos;
+select * from boletos;
+select * from clientes;
+select * from eventos;
+select * from formasdepago;
+select * from lugares;
+select * from  zonas;
+select * from tickets;
+select * from BoletosVista;
+select * from AsientosVista;
+select * from TicketsVista;
+select * from new_eventos;
+select * from new_ticket;
+select * from new_lugares;
