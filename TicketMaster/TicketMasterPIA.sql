@@ -939,4 +939,129 @@ INNER JOIN Lugares lug ON lug.id = ev.idLugar
 INNER JOIN Clientes cli ON cli.id = tic.idCliente
 INNER JOIN Formasdepago fdp ON fdp.id = tic.idFormaDePago
 INNER JOIN Asientos asi ON asi.id = bol.idAsiento;
+# -------------------------------------------------------------------------------------- FUNCIONES ---------------------------------------------------------------------------------------- #
+DELIMITER //
+
+CREATE FUNCTION ZonaExisteEnEvento(idEvento INT, idZona INT) RETURNS INT
+DETERMINISTIC
+BEGIN
+
+  /*
+    Esta función verifica la existencia de una zona en un evento específico, 
+    basándose en los identificadores de evento (idEvento) e identificadores de zona (idZona) proporcionados.
+    Devuelve 1 si laz zona existe en el evento o 0 en caso contrario.
+    */
+    
+    DECLARE existe INT;
+    
+    SELECT COUNT(*) INTO existe
+    FROM Zonas z
+    INNER JOIN Lugares l ON z.idLugar = l.id
+    INNER JOIN Eventos e ON e.idLugar = l.id
+    WHERE e.id = idEvento AND z.id = idZona;
+    
+    IF existe > 0 THEN
+        RETURN 1;
+    ELSE
+        RETURN 0;
+    END IF;
+END //
+
+DELIMITER ;
+# ----------------------------------------------------- #
+DELIMITER //
+
+CREATE FUNCTION ExisteEvento(eventId INT) RETURNS INT
+DETERMINISTIC
+BEGIN
+    /*
+    Esta función verifica la existencia de un evento en la tabla Eventos, 
+    basándose en el identificador de evento (eventId) proporcionado.
+    Devuelve 1 si el evento existe o 0 en caso contrario.
+    */
+    
+    IF EXISTS (SELECT * FROM Eventos WHERE id = eventId) THEN
+        RETURN 1;
+    ELSE
+        RETURN 0;
+    END IF;
+END //
+
+DELIMITER ;
+# ----------------------------------------------------- #
+DELIMITER // 
+
+CREATE FUNCTION ZonaAsiento(idAsiento INT) RETURNS INT
+DETERMINISTIC
+BEGIN
+
+		/*
+		Dado un asiento, devuelve el id de la zona en el que esta
+		*/
+		
+		DECLARE zona INT;
+        SET zona = (SELECT idZona FROM Asientos WHERE id = idAsiento);
+        
+        RETURN zona;
+	
+END //
+
+DELIMITER ;
+# -------------------------------------------------------------- #
+DELIMITER // 
+
+CREATE FUNCTION AsientoEnEvento(idAsiento INT, idEvento INT) RETURNS INT
+DETERMINISTIC
+BEGIN
+		/*
+			Regresa 1 si es que el asiento existe en el lugar en donde se realiza un evento
+        */
+		SET @idLugar = (SELECT idLugar FROM eventos WHERE id = idEvento);
+        -- Esta es la vista AsientosVista, por cuestiones de sintaxis la recreamos aqui dentro en vez de llamarla 
+        IF EXISTS (SELECT asi.id as IdAsiento, lug.id as IdLugar, lug.nombre as Lugar, zona.id as IdZona, zona.descripcion as 'Zona de Asiento' , asi.fila as Fila , asi.numero as Numero
+					FROM Asientos asi
+					INNER JOIN Zonas zona ON zona.id = asi.idZona
+					INNER JOIN Lugares lug ON lug.id = zona.idLugar
+					WHERE (lug.Id = @idLugar AND asi.id = idAsiento)) THEN
+			RETURN 1;
+        ELSE 
+			RETURN 0;
+		END IF;
+
+		
+END //
+
+DELIMITER ;
+# ----------------------------------------------------- #
+DELIMITER //
+
+CREATE FUNCTION AsientoOcupado(idAsientos INT, idEventos INT) RETURNS INT
+DETERMINISTIC
+BEGIN
+		/* Verifica si un asiento está ocupado en un evento específico. */
+
+	-- si el asiento existe en evento entonces asientoExisteEnEvento valdrá 1, en otro caso 0
+    SET @asientoExisteEnEvento = (SELECT AsientoEnEvento(idAsientos, idEventos));
+    
+    -- si ya existe un evento con el mismo id de asiento y id de evento que el que ingresamos y que no está disponible significa que está ocupado
+    IF @asientoExisteEnEvento = 1 THEN
+    
+		 IF NOT EXISTS (SELECT * FROM Boletos WHERE (idAsiento = idAsientos AND idEvento = idEventos AND disponible = 1)) THEN
+				-- retorna 0 si está libre
+                RETURN 1;
+			ELSE
+				-- retorna 1 si está ocupado
+				RETURN 0;
+			END IF;
+
+
+	ELSE
+    
+		-- retorna 2 si no existe
+		RETURN 2;
+	END IF;
+
+END //
+
+DELIMITER ;
 
