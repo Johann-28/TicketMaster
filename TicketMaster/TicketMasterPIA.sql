@@ -1140,7 +1140,7 @@ DELIMITER ;
 -- ---------------------------------------------------------------------------
 DELIMITER //
 
-CREATE PROCEDURE Eliminar_Ticket(idTicket INT)
+CREATE PROCEDURE EliminarTicket(idTicket INT)
 BEGIN
 
 	IF EXISTS (SELECT * FROM Tickets WHERE id = idTicket) THEN
