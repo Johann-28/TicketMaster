@@ -1134,13 +1134,13 @@ BEGIN
 		SELECT 'Metodo de pago no existe' AS Mensaje;
     END IF;
 
-END
+END //
 
 DELIMITER ;
 -- ---------------------------------------------------------------------------
 DELIMITER //
 
-CREATE PROCEDURE EliminarTicket(idTicket INT)
+CREATE PROCEDURE Eliminar_Ticket(idTicket INT)
 BEGIN
 
 	IF EXISTS (SELECT * FROM Tickets WHERE id = idTicket) THEN
@@ -1155,7 +1155,7 @@ BEGIN
 			SELECT 'Ticket no existe';
 	END IF;
 
-END
+END //
 
 DELIMITER ;
 # ----------------------------------------------------- #
