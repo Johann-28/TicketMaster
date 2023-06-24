@@ -16,7 +16,7 @@ Este repositorio será una bitácora de un sistema administrador de eventos al e
    > Fallar al planear es planear fallar 💡  
 <p align="justify">
 Por lo que es de suma importancia comenzar a diseñar el sistema de una manera correcta desde el principio, en este caso en el que estamos diseñando una base de datos deberemos de diseñar un diagrama de entidades y como es que se relacionan para poder así llegar a un buen diseño y posteriormente codificarlo.
-
+h
 <p align="justify">
 Se eligió esta tématica principalmente por el reto de entender como es que funciona la administración detrás de los eventos al estilo de ticket master, además de que lo pude pensar como un proyecto extenso al involucrar varias entidades lo que me permitiría poner a prueba mis habilidades en SQL, además de que en semestres pasados hice esta misma temática en mi proyecto y, aunque fue un éxito el funcionamiento de la aplicación desarrollada fue construida a base de malas practicas, es decir, no fue planteada de manera correcta pues desde el diagrama der estaba muy mal hecho lo que provocó que al momento de codificar tuviera que hacer cambios en la estructura de la base de datos sobre la marcha haciendolo un dolor de cabeza, para bien o para mal de ese mergurge de codigo es que pude crecer mucho como administrador de bases de datos.
 </p>
